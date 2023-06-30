@@ -1,0 +1,9 @@
+main{
+    width: 1024px;
+}
+
+@media screen and(max-width:400px) {
+    p{
+        font-size: 2rem;
+    }
+}

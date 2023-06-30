@@ -1,0 +1,51 @@
+.caixa-branca {
+    border: 1px solid white;
+    padding: 10px;
+    border: 1px solid white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-left: 200px;
+    width: 960px;
+
+}
+
+p {
+    font-family: 'Cedarville Cursive', cursive;
+    
+}
+
+body {
+    background-color: lightgray;
+    margin: 0 auto;
+}
+
+h3 {
+    margin: 0;
+    position: relative;
+    top: 0;
+    left: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.top-link {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #008B8B;
+    padding: 10px;
+    padding-left: 30px;
+}
+
+.top-link a {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+
+
+img {
+    display: block;
+    margin: auto;
+    /* centraliza a imagem verticalmente */
+}

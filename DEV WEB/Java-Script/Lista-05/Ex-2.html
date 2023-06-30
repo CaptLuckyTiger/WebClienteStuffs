@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+
+</html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Carregar Imagens Dinamicamente</title>
+    <script>
+        function carregarImagens() {
+            // Perguntar ao usuário se ele deseja carregar as imagens
+            var confirmacao = confirm("Deseja carregar as imagens dinamicamente?");
+
+            if (confirmacao) {
+                // Criar um elemento de imagem
+                var imagem = document.createElement("img");
+
+                // Definir o caminho da imagem
+                imagem.src = "caminho_da_imagem.jpg";
+
+                // Adicionar a imagem ao corpo do documento (pode ser substituído por qualquer outro elemento)
+                document.body.appendChild(imagem);
+
+                // Exibir um alerta informando que a operação foi realizada
+                alert("Imagens carregadas com sucesso!");
+            }
+        }
+    </script>
+</head>
+
+<body>  
+    <button onclick="carregarImagens()">Carregar Imagens</button>  
+</body>
+
+</html>

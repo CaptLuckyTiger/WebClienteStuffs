@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+    <title>Loja de Jogos</title>
+    <style>
+        /* Estilos CSS */
+        /* Estilos básicos */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        /* Menu principal */
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0 auto;
+            max-width: 960px;
+            display: flex;
+            text-align: center;
+        }
+
+
+        nav ul li {
+            flex: 1;
+        }
+
+        nav ul li a {
+            color: #fff;
+            padding: 10px;
+            text-decoration: none;
+        }
+
+
+        /* Produtos em destaque */
+        #produtos-destaque {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+
+        #produtos-destaque h3 {
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        /* Produtos em destaque */
+        #produtos-destaque {
+            display: flex;
+            flex-direction: column;
+            margin: 90px;
+            padding: 10px;
+            width: 100px;
+            text-align: center;
+            height: 280px;
+        }
+
+        .produto {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+            padding: 10px;
+            width: 200px;
+            text-align: center;
+            height: 280px;
+
+        }
+
+        .product-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .produto img {
+            margin: 0 auto;
+            max-width: 150px;
+            max-height: 150px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .produto-titulo {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+
+        footer.sticky-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #503a3a;
+            height: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .footer-content p {
+            color: #fff;
+            margin: 0;
+            font-size: 16px;
+        }
+
+        /* Login */
+
+        .login-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+        }
+
+        .login-box {
+            background-color: #fff;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .login-box input {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 5px;
+        }
+
+        .login-box button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .login-box button.cancelar {
+            background-color: #999;
+        }
+
+        /* Cadastro */
+        .cadastro-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+        }
+
+        .cadastro-box {
+            background-color: #fff;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .cadastro-box input {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 5px;
+        }
+
+        .cadastro-box button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cadastro-box button.cancelar {
+            background-color: #999;
+        }
+
+
+        /* Estilos CSS */
+        .carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+
+        .slide {
+            width: 20%;
+            height: 80px;
+            object-fit: contain;
+        }
+
+
+        .carousel-image {
+            width: 20%;
+            height: 80px;
+        }
+
+
+        .carousel-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .carousel-button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .slick-dots {
+            display: none !important;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .buy-btn:hover {
+            background-color: #444;
+        }
+
+        .buy-btn:active {
+            background-color: #555;
+        }
+
+        .buy-btn:focus {
+            outline: none;
+        }
+
+        .buy-btn:disabled {
+            background-color: #888;
+            cursor: not-allowed;
+        }
+
+        .buy-btn.rounded {
+            border-radius: 50%;
+        }
+
+        .buy-btn.active {
+            background-color: #0f0;
+        }
+
+        .buy-btn.inactive {
+            background-color: #f00;
+        }
+
+        /* Novo CSS para os botões de compra */
+        .buy-btn {
+            flex-shrink: 0;
+            margin-top: auto;
+        }
+
+        .invalid {
+            border: 1px solid red;
+        }
+
+        .produto-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .alert-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+        }
+
+        .alert-box {
+            background-color: #fff;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .alert-box p {
+            margin: 0;
+            padding: 10px 0;
+        }
+
+        .alert-box .close-btn {
+            padding: 5px 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="backgroundHeader" style="display: flex; justify-content: center; align-items: center; ">
+        <img src="banner.jpg" alt="backgroundHeader" height="200px" width="100%">
+    </div>
+
+    <!-- Menu principal -->
+    <nav style="margin-bottom: 20px;">
+        <ul>
+            <li><a href="#">Início</a></li>
+            <li><a href="e-commercePaginaProdutos.html">Produtos </a></li>
+            <li><a href="e-commerceCarrinho.html">Carrinho</a></li>
+            <li><a href="e-commerceContato.html">Contato</a></li>
+            <li style="float:right"><a href="#" id="login-btn">Entrar</a></li>
+        </ul>
+    </nav>
+
+    <!-- Banner carrossel de imagens -->
+
+    <div id="banner-carousel" class="carousel">
+
+        <img src="avatar.jpg" alt="carousel-image" data-url="e-commercePaginaProdutos.html">
+        <img src="madagascar.jpg" alt="carousel-image" data-url="e-commercePaginaProdutos.html">
+        <img src="horizon.jpeg" alt="carousel-image" data-url="e-commercePaginaProdutos.html">
+    </div>
+
+    <div class="carousel-buttons">
+        <button class="carousel-button prev">Anterior</button>
+        <button class="carousel-button next">Próximo</button>
+    </div>
+
+
+
+    <footer class="sticky-footer">
+        <div class="footer-content">
+            <p>Entre em contato: contato@lojadejogos.com</p>
+        </div>
+    </footer>
+
+    <!-- Produtos em destaque -->
+    <section id="produtos-destaque" style="margin-bottom: 100px;">
+        <h3 style="text-align: center;">Produtos em Destaque</h3>
+        <div class="produto product-container">
+            <img src="watchdogs.jpg" alt="Produto 1">
+            <p class="produto-titulo"><strong>Watch Dogs Legion</strong></p>
+            <p>R$ 159,90</p>
+            <button onclick="redirecionar()" class="buy-btn">Ir para produtos</button>
+        </div>
+        <div class="produto product-container">
+            <img src="dead.jpg" alt="Produto 2">
+            <p class="produto-titulo"><strong>Guardiões da Galaxia</strong></p>
+            <p>R$ 350,00</p>
+            <button onclick="redirecionar()" class="buy-btn">Ir para produtos</button>
+        </div>
+        <div class="produto product-container">
+            <img src="valhalla.jpg" alt="Produto 3">
+            <p class="produto-titulo"><strong>Assassin's Creed Valhalla</strong></p>
+            <p>R$ 199,90</p>
+            <button onclick="redirecionar()" class="buy-btn">Ir para produtos</button>
+        </div>
+    </section>
+    <!-- Login overlay -->
+    <div class="login-overlay">
+        <div class="login-box">
+            <h2>Login</h2>
+            <input type="text" placeholder="Usuário" id="login-usuario">
+            <input type="password" placeholder="Senha" id="login-senha">
+            <button id="login-submit">Entrar</button>
+            <p>Não possui uma conta? <a href="#" id="cadastro-link">Cadastre-se</a></p>
+            <button class="cancelar" id="login-cancel">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- Cadastro overlay -->
+    <div class="cadastro-overlay">
+        <div class="cadastro-box">
+            <h2>Cadastro</h2>
+            <input type="text" placeholder="Nome" id="cadastro-nome" >
+            <input type="email" placeholder="E-mail" id="cadastro-email">
+            <input type="text" placeholder="CPF" id="cadastro-cpf" pattern="[0-9]{11}"
+                title="Digite um CPF válido com 11 dígitos numéricos">
+            <input type="text" placeholder="CEP" id="cadastro-cep" pattern="[0-9]{8}"
+                title="Digite um CEP válido com 8 dígitos numéricos">
+            <input type="text" placeholder="Rua" id="cadastro-rua">
+            <input type="text" placeholder="Bairro" id="cadastro-bairro">
+            <input type="text" placeholder="Cidade" id="cadastro-cidade">
+            <input type="text" placeholder="UF" id="cadastro-uf">
+            <input type="text" placeholder="Número" id="cadastro-numero" min="0" max="9999" required>
+            <input type="date" placeholder="Data de Nascimento" id="cadastro-data-nascimento">
+            <input type="password" placeholder="Senha" id="cadastro-senha">
+            <button id="cadastro-submit">Cadastrar</button>
+            <p>Já possui uma conta? <a href="#" id="login-link">Login</a></p>
+            <button class="cancelar" id="cadastro-cancel">Cancelar</button>
+        </div>
+    </div>
+
+    <div class="alert-overlay">
+        <div class="alert-box">
+            <p id="alert-message"></p>
+            <button class="close-btn">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        // Código JavaScript
+        $(document).ready(function () {
+            // Exibir overlay de login ao clicar no botão "Login"
+            $('#login-btn').click(function () {
+                $('.login-overlay').fadeIn();
+            });
+
+            // Ocultar overlay de login ao clicar no botão "Cancelar"
+            $('#login-cancel').click(function () {
+                $('.login-overlay').fadeOut();
+            });
+
+            // Exibir overlay de cadastro ao clicar no link "Cadastre-se"
+            $('#cadastro-link').click(function () {
+                $('.login-overlay').fadeOut(function () {
+                    $('.cadastro-overlay').fadeIn();
+                });
+            });
+
+            // Ocultar overlay de cadastro ao clicar no link "Login"
+            $('#login-link').click(function () {
+                $('.cadastro-overlay').fadeOut(function () {
+                    $('.login-overlay').fadeIn();
+                });
+            });
+
+            // Ocultar overlay de cadastro ao clicar no botão "Cancelar"
+            $('#cadastro-cancel').click(function () {
+                $('.cadastro-overlay').fadeOut();
+            });
+
+            // Função para processar o cadastro
+            $('#cadastro-submit').click(function () {
+                var cepRegex = /^[0-9]+$/;
+                var nome = $('#cadastro-nome').val();
+                var email = $('#cadastro-email').val();
+                var cpf = $('#cadastro-cpf').val();
+                var cep = $('#cadastro-cep').val();
+                var rua = $('#cadastro-rua').val();
+                var bairro = $('#cadastro-bairro').val();
+                var cidade = $('#cadastro-cidade').val();
+                var uf = $('#cadastro-uf').val();
+                var numero = $('#cadastro-numero').val();
+                var dataNascimento = $('#cadastro-data-nascimento').val();
+                var senha = $('#cadastro-senha').val();
+
+
+
+
+                // Validar se os campos obrigatórios não estão vazios
+                if (nome.trim() === '' || email.trim() === '' || cpf.trim() === '' || cep.trim() === '' || rua.trim() === '' || bairro.trim() === '' || cidade.trim() === '' || uf.trim() === '' || numero.trim() === '' || dataNascimento.trim() === '' || senha.trim() === '') {
+                    exibirAlerta('Por favor, preencha todos os campos obrigatórios.');
+                    return;
+                }
+
+                // Validar se o e-mail está no formato correto
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    exibirAlerta('Por favor, insira um e-mail válido.');
+                    return;
+                }
+
+                // Validar se o CPF possui somente números e é válido
+                var cpfRegex = /^[0-9]+$/;
+                if (!cpfRegex.test(cpf)) {
+                    exibirAlerta('Por favor, insira um CPF válido.');
+                    return;
+                }
+                if (!validarCPF(cpf)) {
+                    exibirAlerta('Por favor, insira um CPF válido.');
+                    return;
+                }
+
+                // Validar se o CEP possui somente números
+                if (!cepRegex.test(cep)) {
+                    exibirAlerta('Por favor, insira um CEP válido.');
+                    return;
+                }
+
+
+
+                // Validar se a data de nascimento é válida e se a pessoa possui 18 anos ou mais
+                var dataNascimentoRegex = /^\d{4}-\d{2}-\d{2}$/;
+                if (!dataNascimentoRegex.test(dataNascimento)) {
+                    exibirAlerta('Por favor, insira uma data de nascimento válida.');
+                    return;
+                }
+                var dataNascimentoObj = new Date(dataNascimento);
+                var dataAtual = new Date();
+                var idade = dataAtual.getFullYear() - dataNascimentoObj.getFullYear();
+                var mes = dataAtual.getMonth() - dataNascimentoObj.getMonth();
+                if (mes < 0 || (mes === 0 && dataAtual.getDate() < dataNascimentoObj.getDate())) {
+                    idade--;
+                }
+                if (idade < 18) {
+                    exibirAlerta('É necessário ter 18 anos ou mais para se cadastrar.');
+                    return;
+                }
+
+                // Validar se a senha possui pelo menos 8 dígitos
+                if (senha.length < 8) {
+                    exibirAlerta('A senha deve ter no mínimo 8 caracteres.');
+                    return false;
+                }
+
+
+                // Se todas as validações passarem, exibir uma mensagem de sucesso
+                exibirAlerta('Cadastro realizado com sucesso!');
+
+                // Se todas as validações passaram, exibir os dados
+                console.log('Nome: ' + nome);
+                console.log('E-mail: ' + email);
+                console.log('CPF: ' + cpf);
+                console.log('CEP: ' + cep);
+                console.log('Rua: ' + rua);
+                console.log('Bairro: ' + bairro);
+                console.log('Cidade: ' + cidade);
+                console.log('UF: ' + uf);
+                console.log('Número: ' + numero);
+                console.log('Data de Nascimento: ' + dataNascimento);
+                console.log('Senha: ' + senha);
+
+                console.log('O formulario foi submetido'); // teste
+
+                // Limpar os campos do formulário
+                $('input[type="text"], input[type="email"], input[type="password"], input[type="date"]').val('');
+
+            });
+
+            // Função para validar CPF
+            function validarCPF(cpf) {
+                cpf = cpf.replace(/[^\d]+/g, '');
+                if (cpf === '') return false;
+                // Elimina CPFs inválidos conhecidos
+                if (
+                    cpf.length !== 11 ||
+                    cpf === '00000000000' ||
+                    cpf === '11111111111' ||
+                    cpf === '22222222222' ||
+                    cpf === '33333333333' ||
+                    cpf === '44444444444' ||
+                    cpf === '55555555555' ||
+                    cpf === '66666666666' ||
+                    cpf === '77777777777' ||
+                    cpf === '88888888888' ||
+                    cpf === '99999999999'
+                ) {
+                    return false;
+                }
+                // Valida 1º dígito
+                let add = 0;
+                for (let i = 0; i < 9; i++) add += parseInt(cpf.charAt(i)) * (10 - i);
+                let rev = 11 - (add % 11);
+                if (rev === 10 || rev === 11) rev = 0;
+                if (rev !== parseInt(cpf.charAt(9))) return false;
+                // Valida 2º dígito
+                add = 0;
+                for (let i = 0; i < 10; i++) add += parseInt(cpf.charAt(i)) * (11 - i);
+                rev = 11 - (add % 11);
+                if (rev === 10 || rev === 11) rev = 0;
+                if (rev !== parseInt(cpf.charAt(10))) return false;
+                return true;
+            }
+        });
+
+        $(document).ready(function () {
+            $('.carousel').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                dots: true,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                infinite: true,
+                speed: 500,
+                fade: true,
+                cssEase: 'linear'
+
+
+            });
+        });
+
+
+        // Função para avançar para o próximo slide
+        function nextSlide() {
+            $('.carousel').slick('slickNext');
+        }
+
+        // Função para voltar para o slide anterior
+        function prevSlide() {
+            $('.carousel').slick('slickPrev');
+        }
+
+        // Atribua as funções aos eventos de clique dos botões
+        $('.carousel-button.next').click(nextSlide);
+        $('.carousel-button.prev').click(prevSlide);
+
+        $(document).ready(function () {
+            // Ocultar botões originais do Slick Carousel
+            $('.slick-prev, .slick-next').hide();
+
+            // Vincular eventos aos botões de navegação personalizados
+            $('.carousel-button.prev').click(function () {
+                $('.slick-slider').slick('slickPrev');
+            });
+
+            $('.carousel-button.next').click(function () {
+                $('.slick-slider').slick('slickNext');
+            });
+
+
+
+
+        });
+
+
+
+        window.addEventListener('DOMContentLoaded', function () {
+            var footer = document.querySelector('.footer');
+            var windowHeight = window.innerHeight;
+            var bodyHeight = document.body.clientHeight;
+
+            if (windowHeight > bodyHeight) {
+                footer.classList.add('sticky-footer');
+            } else {
+                footer.classList.remove('sticky-footer');
+            }
+        });
+
+        window.addEventListener('resize', function () {
+            var footer = document.querySelector('.footer');
+            var windowHeight = window.innerHeight;
+            var bodyHeight = document.body.clientHeight;
+
+            if (windowHeight > bodyHeight) {
+                footer.classList.add('sticky-footer');
+            } else {
+                footer.classList.remove('sticky-footer');
+            }
+        });
+
+        function redirecionar() {
+            window.location.href = 'e-commercePaginaProdutos.html';
+        }
+
+        $(document).ready(function () {
+            // ...
+
+            // Redirecionar para a URL especificada no atributo data-url ao clicar na imagem do carrossel
+            $('#banner-carousel img').click(function () {
+                var url = $(this).data('url');
+                window.location.href = url;
+            });
+
+            // ...
+        });
+
+        $(document).ready(function () {
+            $('#cadastro-cpf').on('input', function () {
+                var cpf = $(this).val();
+                var cpfRegex = /^\d{11}$/;
+
+                if (!cpfRegex.test(cpf)) {
+                    $(this).addClass('invalid');
+                } else {
+                    $(this).removeClass('invalid');
+                }
+            });
+
+            $('#cadastro-cep').on('input', function () {
+                var cep = $(this).val();
+                var cepRegex = /^\d{8}$/;
+
+                if (!cepRegex.test(cep)) {
+                    $(this).addClass('invalid');
+                } else {
+                    $(this).removeClass('invalid');
+                }
+            });
+
+
+            $('#cadastro-numero').on('input', function () {
+                var numero = $(this).val();
+                var numeroRegex = /^[0-9]{1,}$/;
+
+                if (!numeroRegex.test(numero)) {
+                    $(this).addClass('invalid');
+                } else {
+                    $(this).removeClass('invalid');
+                }
+            });
+
+
+        });
+
+        function exibirAlerta(mensagem) {
+            $('#alert-message').text(mensagem);
+            $('.alert-overlay').fadeIn();
+        }
+
+        // Ocultar overlay do alerta ao clicar no botão "Fechar"
+        $('.alert-overlay .close-btn').click(function () {
+            $('.alert-overlay').fadeOut();
+        });
+
+
+
+        //TESTE DE LOGIN////////////////////
+
+        // Variável para armazenar o nome do usuário logado
+        var nomeUsuario = "Usuário";
+
+        // Função para verificar o login
+        function verificarLogin() {
+            var usuario = document.getElementById("login-usuario").value;
+            var senha = document.getElementById("login-senha").value;
+
+            // Verificar as credenciais (exemplo simples)
+            if (usuario === "admin" && senha === "senha123") {
+                // Login bem-sucedido
+                document.getElementById("login-usuario").value = ""; // Limpar o campo de usuário
+                document.getElementById("login-senha").value = ""; // Limpar o campo de senha
+
+                // Fechar o evento de login
+                $('.login-overlay').fadeOut();
+
+                // Exibir o nome do usuário
+                document.getElementById("login-btn").innerText = nomeUsuario;
+            } else {
+                // Exibir mensagem de erro de login
+                exibirAlerta("Campo vazio");
+            }
+        }
+
+        // Função para exibir um alerta na tela
+        function exibirAlerta(mensagem) {
+            document.getElementById("alert-message").innerText = mensagem;
+            $('.alert-overlay').fadeIn();
+
+            // Fechar o alerta ao clicar no botão "Fechar"
+            $('.close-btn').click(function () {
+                $('.alert-overlay').fadeOut();
+            });
+        }
+
+        // Exibir overlay de login ao clicar no botão "Entrar"
+        $('#login-btn').click(function () {
+            $('.login-overlay').fadeIn();
+        });
+
+        // Ocultar overlay de login ao clicar no botão "Cancelar"
+        $('#login-cancel').click(function () {
+            $('.login-overlay').fadeOut();
+        });
+
+        // Verificar o login ao clicar no botão "Entrar" na tela de login
+        $('#login-submit').click(function () {
+            verificarLogin();
+        });
+
+        // Verificar o login ao pressionar Enter no campo de senha na tela de login
+        $('#login-senha').keypress(function (e) {
+            if (e.which === 13) {
+                verificarLogin();
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>

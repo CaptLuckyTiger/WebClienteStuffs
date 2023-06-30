@@ -1,0 +1,120 @@
+div {
+    width: 100%;
+}
+
+h1 {
+    display: inline-block;
+    width: 6.33%;
+}
+
+a:focus,
+a:hover {
+    background-color: black;
+    /* Demarca links que estão sendo passados com o mause*/
+    color: green;
+    outline: none;
+
+}
+
+:root {
+    --link-color: red;
+}
+
+a {
+    color: var(--link-color);
+}
+
+
+input:disabled {
+    background-color: green;
+    /* exemplo para mudar a cor do input */
+    color: green;
+}
+
+.pagina {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid black;
+}
+
+table {
+    width: 700px;
+    /* altere o valor de acordo com o que desejar */
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+td {
+    padding: 1px;
+    border: 1px solid black;
+}
+
+.long-cell {
+    width: 50%;
+    height: 2px;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+tr:first-child {
+    background-color: black;
+    color: white;
+}
+
+tr:nth-child(even):not(:first-child) {
+    background-color: white;
+}
+
+tr:nth-child(odd):not(:first-child) {
+    background-color: gray;
+}
+
+.paragrafo {
+    text-align: center;
+    /* centraliza o texto horizontalmente */
+    position: relative;
+    /* posiciona o elemento de forma absoluta */
+    bottom: 0;
+    /* posiciona o elemento na parte inferior da tela */
+    width: 100%;
+    /* define a largura do elemento como 100% */
+    
+}
+
+.pagina2 {
+    position: relative;
+    height: 54%;
+    width: 54%;
+    box-sizing: border-box;
+    border: 2px solid black;
+    margin-bottom: 20px;
+}
+
+
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+#Paragrafo1 {
+    background-color: red;
+}
+
+#EndParagrafo::first-letter {
+    font-size: 3em;
+}
+
+#EndParagrafo {
+    position: relative;
+    text-decoration: underline;
+}
+
+

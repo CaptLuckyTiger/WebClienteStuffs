@@ -1,0 +1,52 @@
+.pagina {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 10px;
+
+
+}
+
+.input-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 200px;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+input {
+    margin-right: 10px;
+}
+
+#label1 {
+    border: 1px solid #ccc;
+    
+}
+
+a {
+    text-decoration: none;
+    color: #2c66ce;
+
+}
+
+.faixa {
+    position: absolute;
+    bottom: -20;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background-color: #ccc;
+  }
+
+  .links {
+    text-align: right;
+  }
+  
